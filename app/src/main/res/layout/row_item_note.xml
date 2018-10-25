@@ -3,6 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="callback"
+            type="za.co.addcolour.plainoinote.ui.clickCallback.NoteEntityClickCallback" />
+
+        <variable
+            name="data"
+            type="za.co.addcolour.plainoinote.model.NoteEntity" />
+    </data>
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -32,6 +43,7 @@
             android:layout_margin="8dp"
             android:ellipsize="end"
             android:maxLines="2"
+            android:text="@{data.text}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/fab"

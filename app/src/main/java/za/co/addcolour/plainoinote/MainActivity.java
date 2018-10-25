@@ -9,20 +9,28 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import za.co.addcolour.plainoinote.databinding.ActivityMainBinding;
+import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+import za.co.addcolour.plainoinote.databinding.ActivityMainBinding;
+import za.co.addcolour.plainoinote.model.NoteEntity;
+import za.co.addcolour.plainoinote.ui.adapter.NoteEntityAdapter;
+import za.co.addcolour.plainoinote.ui.clickCallback.NoteEntityClickCallback;
+import za.co.addcolour.plainoinote.utils.SampleData;
+
+public class MainActivity extends AppCompatActivity implements NoteEntityClickCallback {
 
     private ActivityMainBinding mBinding;
 
     private LinearLayoutManager mManager;
+
+    private NoteEntityAdapter mAdapter;
+    private ArrayList<NoteEntity> noteEntities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        initialize();
         setSupportActionBar(mBinding.toolbar);
         mBinding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,12 +39,22 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        noteEntities = new ArrayList<>();
+        noteEntities.addAll(SampleData.getNotes());
+
+        initialize();
     }
 
     private void initialize() {
-
+        mAdapter = new NoteEntityAdapter(this);
         mManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true);
+
+        mBinding.contentMain.recyclerView.setHasFixedSize(true);
         mBinding.contentMain.recyclerView.setLayoutManager(mManager);
+
+        mAdapter.setNoteEntityList(noteEntities);
+        mBinding.contentMain.recyclerView.setAdapter(mAdapter);
 
     }
 
@@ -60,5 +78,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(NoteEntity noteEntity) {
+
     }
 }
