@@ -11,7 +11,7 @@
 
         <variable
             name="data"
-            type="za.co.addcolour.plainoinote.model.NoteEntity" />
+            type="za.co.addcolour.plainoinote.database.model.NoteEntity" />
     </data>
 
     <android.support.constraint.ConstraintLayout

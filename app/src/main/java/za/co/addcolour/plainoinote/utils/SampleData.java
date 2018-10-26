@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import za.co.addcolour.plainoinote.model.NoteEntity;
+import za.co.addcolour.plainoinote.database.model.NoteEntity;
 
 public class SampleData {
 

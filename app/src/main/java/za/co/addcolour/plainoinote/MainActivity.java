@@ -3,7 +3,6 @@ package za.co.addcolour.plainoinote;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -13,7 +12,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 import za.co.addcolour.plainoinote.databinding.ActivityMainBinding;
-import za.co.addcolour.plainoinote.model.NoteEntity;
+import za.co.addcolour.plainoinote.database.model.NoteEntity;
 import za.co.addcolour.plainoinote.ui.adapter.NoteEntityAdapter;
 import za.co.addcolour.plainoinote.ui.clickCallback.NoteEntityClickCallback;
 import za.co.addcolour.plainoinote.utils.SampleData;

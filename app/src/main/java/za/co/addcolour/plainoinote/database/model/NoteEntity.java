@@ -1,4 +1,4 @@
-package za.co.addcolour.plainoinote.model;
+package za.co.addcolour.plainoinote.database.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "NoteEntity")
+@Entity(tableName = "note_entity")
 public class NoteEntity {
 
     @PrimaryKey(autoGenerate = true)
