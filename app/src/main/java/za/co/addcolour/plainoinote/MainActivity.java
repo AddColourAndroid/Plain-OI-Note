@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initialize() {
+
         mAdapter = new NoteEntityAdapter(this);
         mManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true);
 
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity
 
         mAdapter.setNoteEntityList(noteEntities);
         mBinding.contentMain.recyclerView.setAdapter(mAdapter);
-
     }
 
     @Override
