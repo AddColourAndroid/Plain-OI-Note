@@ -13,7 +13,7 @@ import java.util.Objects;
 
 import za.co.addcolour.plainoinote.R;
 import za.co.addcolour.plainoinote.databinding.RowItemNoteBinding;
-import za.co.addcolour.plainoinote.database.model.NoteEntity;
+import za.co.addcolour.plainoinote.model.NoteEntity;
 import za.co.addcolour.plainoinote.ui.clickCallback.NoteEntityClickCallback;
 import za.co.addcolour.plainoinote.viewHolder.NoteViewHolder;
 

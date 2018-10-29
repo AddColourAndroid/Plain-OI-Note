@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 import za.co.addcolour.plainoinote.databinding.ActivityMainBinding;
-import za.co.addcolour.plainoinote.database.model.NoteEntity;
+import za.co.addcolour.plainoinote.model.NoteEntity;
 import za.co.addcolour.plainoinote.ui.adapter.NoteEntityAdapter;
 import za.co.addcolour.plainoinote.ui.clickCallback.NoteEntityClickCallback;
 import za.co.addcolour.plainoinote.utils.SampleData;
