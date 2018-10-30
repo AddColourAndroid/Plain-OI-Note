@@ -35,7 +35,8 @@
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
-        <include layout="@layout/content_editor" />
+        <include android:id="@+id/content_editor"
+            layout="@layout/content_editor" />
 
     </android.support.design.widget.CoordinatorLayout>
 </layout>

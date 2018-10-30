@@ -1,8 +1,11 @@
 package za.co.addcolour.plainoinote;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -10,17 +13,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import za.co.addcolour.plainoinote.databinding.ActivityMainBinding;
 import za.co.addcolour.plainoinote.model.NoteEntity;
 import za.co.addcolour.plainoinote.ui.adapter.NoteEntityAdapter;
 import za.co.addcolour.plainoinote.ui.clickCallback.NoteEntityClickCallback;
 import za.co.addcolour.plainoinote.utils.SampleData;
+import za.co.addcolour.plainoinote.viewmodel.MainViewModel;
+
+import static za.co.addcolour.plainoinote.utils.Constants.NOTE_ID_KEY;
 
 public class MainActivity extends AppCompatActivity
         implements NoteEntityClickCallback, View.OnClickListener {
 
     private ActivityMainBinding mBinding;
+    private MainViewModel mViewModel;
 
     private LinearLayoutManager mManager;
 
@@ -39,6 +47,32 @@ public class MainActivity extends AppCompatActivity
         noteEntities.addAll(SampleData.getNotes());
 
         initialize();
+        initViewModel();
+    }
+
+    private void initViewModel() {
+
+        final Observer<List<NoteEntity>> notesObserver =
+                new Observer<List<NoteEntity>>() {
+                    @Override
+                    public void onChanged(@Nullable List<NoteEntity> entityList) {
+                        noteEntities.clear();
+                        assert entityList != null;
+                        noteEntities.addAll(entityList);
+
+                        if (mAdapter == null) {
+                            mAdapter = new NoteEntityAdapter(MainActivity.this);
+                            mAdapter.setNoteEntityList(noteEntities);
+                            mBinding.contentMain.recyclerView.setAdapter(mAdapter);
+                        } else {
+                            mAdapter.notifyDataSetChanged();
+                        }
+                    }
+                };
+
+        mViewModel = ViewModelProviders.of(this)
+                .get(MainViewModel.class);
+        mViewModel.mNotes.observe(this, notesObserver);
     }
 
     private void initialize() {
@@ -66,6 +100,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(NoteEntity noteEntity) {
 
+        Intent intent = new Intent(this, EditorActivity.class);
+        intent.putExtra(NOTE_ID_KEY, noteEntity.getId());
+        startActivity(intent);
     }
 
     @Override
@@ -83,10 +120,22 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add_sample_data) {
+            addSampleData();
+            return true;
+        } else if (id == R.id.action_delete_all) {
+            deleteAllNotes();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteAllNotes() {
+        mViewModel.deleteAllNotes();
+    }
+
+    private void addSampleData() {
+        mViewModel.addSampleData();
     }
 }
