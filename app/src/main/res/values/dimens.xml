@@ -1,7 +1,11 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="margin_8">8dp</dimen>
+    <!-- FAB AND APP BAR -->
+    <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
+
+    <!-- MARGIN -->
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+
 </resources>

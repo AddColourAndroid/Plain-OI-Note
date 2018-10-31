@@ -15,7 +15,7 @@ import za.co.addcolour.plainoinote.model.NoteEntity;
 
 public class EditorViewModel extends AndroidViewModel {
 
-    public MutableLiveData<NoteEntity> mLiveNote =
+    public MutableLiveData<NoteEntity> mLiveNoteEntity =
             new MutableLiveData<>();
     private AppRepository mRepository;
     private Executor executor = Executors.newSingleThreadExecutor();
@@ -30,13 +30,13 @@ public class EditorViewModel extends AndroidViewModel {
             @Override
             public void run() {
                 NoteEntity note = mRepository.getNoteById(noteId);
-                mLiveNote.postValue(note);
+                mLiveNoteEntity.postValue(note);
             }
         });
     }
 
     public void saveNote(String noteText) {
-        NoteEntity note = mLiveNote.getValue();
+        NoteEntity note = mLiveNoteEntity.getValue();
 
         if (note == null) {
             if (TextUtils.isEmpty(noteText.trim())) {
@@ -50,6 +50,6 @@ public class EditorViewModel extends AndroidViewModel {
     }
 
     public void deleteNote() {
-        mRepository.deleteNote(mLiveNote.getValue());
+        mRepository.deleteNote(mLiveNoteEntity.getValue());
     }
 }

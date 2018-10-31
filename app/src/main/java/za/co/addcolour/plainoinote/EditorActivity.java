@@ -6,9 +6,11 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -46,7 +48,7 @@ public class EditorActivity extends AppCompatActivity {
         mViewModel = ViewModelProviders.of(this)
                 .get(EditorViewModel.class);
 
-        mViewModel.mLiveNote.observe(this, new Observer<NoteEntity>() {
+        mViewModel.mLiveNoteEntity.observe(this, new Observer<NoteEntity>() {
             @Override
             public void onChanged(@Nullable NoteEntity noteEntity) {
                 if (noteEntity != null && !mEditing) {
@@ -80,6 +82,7 @@ public class EditorActivity extends AppCompatActivity {
             saveAndReturn();
             return true;
         } else if (item.getItemId() == R.id.action_delete) {
+            Toast.makeText(this, getString(R.string.note_deleted_successfully), Toast.LENGTH_SHORT).show();
             mViewModel.deleteNote();
             finish();
         }
@@ -92,7 +95,10 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     private void saveAndReturn() {
-        mViewModel.saveNote(mBinding.contentEditor.editTextNote.getText().toString());
+        if (!TextUtils.isEmpty(mBinding.contentEditor.editTextNote.getText())) {
+            Toast.makeText(this, getString(R.string.note_save_successfully), Toast.LENGTH_SHORT).show();
+            mViewModel.saveNote(mBinding.contentEditor.editTextNote.getText().toString());
+        }
         finish();
     }
 

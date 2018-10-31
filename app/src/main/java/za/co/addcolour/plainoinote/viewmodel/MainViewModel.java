@@ -12,14 +12,14 @@ import za.co.addcolour.plainoinote.model.NoteEntity;
 
 public class MainViewModel extends AndroidViewModel {
 
-    public LiveData<List<NoteEntity>> mNotes;
+    public LiveData<List<NoteEntity>> mNotesEntity;
     private AppRepository mRepository;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
 
         mRepository = AppRepository.getInstance(application.getApplicationContext());
-        mNotes = mRepository.mNotes;
+        mNotesEntity = mRepository.mNotes;
     }
 
     public void addSampleData() {

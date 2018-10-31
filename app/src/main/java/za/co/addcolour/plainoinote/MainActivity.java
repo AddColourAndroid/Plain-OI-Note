@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity
 
         mViewModel = ViewModelProviders.of(this)
                 .get(MainViewModel.class);
-        mViewModel.mNotes.observe(this, notesObserver);
+        mViewModel.mNotesEntity.observe(this, notesObserver);
     }
 
     private void initialize() {
@@ -132,10 +133,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void deleteAllNotes() {
+
+        Toast.makeText(this, getString(R.string.all_data_deleted_successfully), Toast.LENGTH_SHORT).show();
         mViewModel.deleteAllNotes();
     }
 
     private void addSampleData() {
+
+        Toast.makeText(this, getString(R.string.sample_data_successfully), Toast.LENGTH_SHORT).show();
         mViewModel.addSampleData();
     }
 }

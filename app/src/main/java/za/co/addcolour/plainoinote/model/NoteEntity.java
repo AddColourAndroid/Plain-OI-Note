@@ -3,6 +3,7 @@ package za.co.addcolour.plainoinote.model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import java.util.Date;
 
@@ -54,6 +55,7 @@ public class NoteEntity {
         this.text = text;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "NoteEntity{" +

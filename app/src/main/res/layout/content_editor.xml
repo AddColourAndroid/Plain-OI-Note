@@ -14,7 +14,7 @@
             android:id="@+id/editTextNote"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/text_margin"
+            android:layout_margin="@dimen/margin_16"
             android:hint="@string/txt_hint_enter_note"
             android:inputType="textMultiLine|textCapCharacters" />
 

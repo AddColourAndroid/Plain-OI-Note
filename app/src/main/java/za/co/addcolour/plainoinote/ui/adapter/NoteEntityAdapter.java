@@ -22,10 +22,10 @@ public class NoteEntityAdapter extends RecyclerView.Adapter<NoteViewHolder> {
     private List<? extends NoteEntity> mNoteEntityList;
 
     @Nullable
-    private final NoteEntityClickCallback mNoteEntituClickCallback;
+    private final NoteEntityClickCallback mNoteEntityClickCallback;
 
     public NoteEntityAdapter(@Nullable NoteEntityClickCallback noteEntityClickCallback) {
-        mNoteEntituClickCallback = noteEntityClickCallback;
+        mNoteEntityClickCallback = noteEntityClickCallback;
     }
 
     public void setNoteEntityList(final List<? extends NoteEntity> noteEntityList) {
@@ -69,7 +69,7 @@ public class NoteEntityAdapter extends RecyclerView.Adapter<NoteViewHolder> {
         RowItemNoteBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout.row_item_note,
                         parent, false);
-        binding.setCallback(mNoteEntituClickCallback);
+        binding.setCallback(mNoteEntityClickCallback);
         return new NoteViewHolder(binding);
     }
 
